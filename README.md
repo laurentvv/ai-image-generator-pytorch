@@ -41,7 +41,54 @@
 
 ## 🚀 **INSTALLATION RAPIDE**
 
-### **Étape 1 : Prérequis**
+### **Méthode 1 : Installation automatisée (recommandée)**
+
+La méthode la plus simple pour installer le projet consiste à utiliser le script PowerShell automatisé :
+
+```powershell
+# Télécharger et exécuter le script d'installation
+./install.ps1
+```
+
+Le script effectue automatiquement toutes les étapes d'installation :
+- Vérifie la présence de Python 3.13 dans votre PATH
+- Crée un environnement virtuel nommé `.venv`
+- Active l'environnement virtuel
+- Met à jour pip, setuptools et wheel
+- Installe PyTorch avec CUDA 13.0 depuis l'URL spéciale PyTorch
+- Installe toutes les dépendances depuis requirements.txt
+- Vérifie l'installation en exécutant test_pytorch.py
+
+**Exigences pour l'exécution du script :**
+1. Python 3.13 est installé avec l'option "Add to PATH" cochée
+2. Vous avez les droits d'exécution pour les scripts PowerShell (exécution de scripts non bloquée)
+3. Une connexion Internet stable est disponible (le téléchargement de PyTorch peut prendre plusieurs minutes)
+
+**Autorisation d'exécution des scripts PowerShell :**
+Si vous rencontrez une erreur liée à l'exécution de scripts, vous devrez peut-être autoriser l'exécution des scripts locaux :
+```powershell
+# Vérifier la stratégie d'exécution actuelle
+Get-ExecutionPolicy
+
+# Autoriser l'exécution des scripts signés localement (option recommandée)
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+**Utilisation du script :**
+1. Ouvrez PowerShell dans le dossier du projet
+2. Exécutez le script avec la commande :
+   ```powershell
+   .\install.ps1
+   ```
+3. Attendez la fin de l'installation (cela peut prendre plusieurs minutes)
+4. Une fois terminé, vous pouvez tester avec `python test_pytorch.py`
+5. Pour générer des images : `python main.py`
+
+### **Méthode 2 : Installation manuelle (alternative)**
+
+Si vous préférez installer manuellement sans utiliser le script automatisé, suivez ces étapes :
+
+#### **Étape 1 : Prérequis**
 
 ```powershell
 # Python 3.13 doit être installé avec "Add to PATH" coché
@@ -51,26 +98,26 @@ python --version  # Doit afficher Python 3.13.x
 python -m pip install --upgrade pip setuptools wheel
 ```
 
-### **Étape 2 : Créer l'environnement**
+#### **Étape 2 : Créer l'environnement**
 
 ```powershell
 python3.13 -m venv .venv
 .venv\Scripts\activate
 ```
 
-### **Étape 3 : Installer PyTorch avec CUDA 13.0**
+#### **Étape 3 : Installer PyTorch avec CUDA 13.0**
 
 ```powershell
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu130
 ```
 
-### **Étape 4 : Installer Stable Diffusion et dépendances**
+#### **Étape 4 : Installer Stable Diffusion et dépendances**
 
 ```powershell
 pip install diffusers transformers accelerate pillow huggingface_hub
 ```
 
-### **Étape 5 : Vérifier l'installation**
+#### **Étape 5 : Vérifier l'installation**
 
 `test_pytorch.py` :
 ```python
@@ -251,23 +298,6 @@ pipe.enable_attention_slicing(1)
 
 ---
 
-## 🚀 **INSTALLATION AUTOMATISÉE**
-
-### **Script d'installation PowerShell**
-
-Un script d'installation automatisé est disponible pour configurer l'environnement :
-
-```powershell
-# Télécharger et exécuter le script d'installation
-./install.ps1
-```
-
-Le script effectue automatiquement toutes les étapes d'installation :
-- Vérifie la présence de Python 3.13
-- Crée un environnement virtuel
-- Installe PyTorch avec CUDA 13.0
-- Installe toutes les dépendances depuis requirements.txt
-- Vérifie l'installation
 
 ---
 
